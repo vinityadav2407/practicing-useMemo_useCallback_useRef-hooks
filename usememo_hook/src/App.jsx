@@ -4,7 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Link, Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
-import Contact from './components/Contact'
+
+import Use_Memo from './components/Use_Memo'
+import Use_Callback from './components/Use_Callback'
+import Use_Ref from './components/Use_Ref'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,18 +17,22 @@ function App() {
 
       <nav className='navTab'>
       <Link to='/'>Home</Link>
-      <Link to='/contact'>Contact</Link>
+      <Link to='/usememo'>useMemo-Hook</Link>
+      <Link to='/usecallback'>useCallback-Hook</Link>
+      <Link to='/useref'>useRef-Hook</Link>
       </nav>
     
 
        <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/contact' element={<Contact/>} />
+        <Route path='/usememo' element={<Use_Memo/>} />
+         <Route path='/usecallback' element={<Use_Callback/>} />
+          <Route path='/useref' element={<Use_Ref/>} />
        </Routes>
 
-       <div className="container">
+       {/* <div className="container">
           <h1 style={{textAlign:'center'}}>app</h1>
-       </div>
+       </div> */}
      
     </div>
   )
