@@ -6,6 +6,9 @@ const Use_Memo = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   // heavy calculation using useMemo
+  // into this first parameter we pass the callback function(heavey operation)
+  // second prameter we pass the dependencies on which we need to perform the heavey operations
+
   const fibonacci = useMemo(() => fib((text)), [text]);
   // const fibonacci=fib(text);
 
@@ -13,7 +16,7 @@ const Use_Memo = () => {
     <div
       className="common"
     >
-      <h1>Use_Memo</h1>
+      <h1>Pratice of useMemo(cb,[dependencies]) hook..</h1>
 
 
       <div className="container"
