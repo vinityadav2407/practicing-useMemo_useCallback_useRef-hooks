@@ -1,40 +1,84 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 const Use_Ref = () => {
-  const [text, setText] = useState(0);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
+  const [y, setY] = useState(0);
+  let x = 0;
+  const Ref = useRef(0);
+  // it's not normal variable it's hold as an object(Ref={curret:0})
+  
   return (
-    <div
-      className="common"
-    >
-      <h1>Pratice of useRef(cb,[dependencies]) hook..</h1>
+    <div className="common">
+      <div className="container">
 
-      <div className="container"
-      style={{
-        backgroundColor: isDarkTheme ? "black" : "white",
-        color: isDarkTheme ? "white" : "black",
-        padding: "20px"
-      }}
-      >
-        
-      <button className='btn' onClick={() => setIsDarkTheme(!isDarkTheme)}>
-        Toggle Theme
-      </button>
-      <br />
-        <input
-          type="number"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-
-        <div className="result">
-          <h3>The {text}th Fibonacci is: {0}</h3>
+        {/* STATE */}
+        <div style={{ marginTop: '50px' }}>
+          <button
+            style={{
+              margin: '10px',
+              padding: '10px',
+              backgroundColor: 'lightblue',
+              borderRadius: '15px',
+              fontSize: 'large',
+              fontWeight: 'bold'
+            }}
+            onClick={() => {
+              setY(y + 1);
+              console.log("Y =", y + 1);   // LOG HERE
+            }}
+          >
+            Increase State y
+          </button>
+          <span>State = {y}</span>
         </div>
-      </div>
 
+        {/* LET VARIABLE */}
+        <div>
+          <button
+            style={{
+              margin: '10px',
+              padding: '10px',
+              backgroundColor: 'lightblue',
+              borderRadius: '15px',
+              fontSize: 'large',
+              fontWeight: 'bold'
+            }}
+            onClick={() => {
+              x += 1;
+              console.log("X =", x); // LOG HERE
+            }}
+          >
+            Increase X
+          </button>
+          <span>Let = {x}</span>
+        </div>
+
+        {/* REF
+        // it's not normal variable it's hald as an object(Ref={curret:0})
+        // and it's not re-render but hold(remember the value)
+         */}
+        <div>
+          <button
+            style={{
+              margin: '10px',
+              padding: '10px',
+              backgroundColor: 'lightblue',
+              borderRadius: '15px',
+              fontSize: 'large',
+              fontWeight: 'bold'
+            }}
+            onClick={() => {
+              Ref.current += 1;
+              console.log("Ref =", Ref.current); // LOG HERE
+            }}
+          >
+            Increase Ref
+          </button>
+          <span>Ref = {Ref.current}</span>
+        </div>
+
+      </div>
     </div>
   );
 }
 
-export default Use_Ref
+export default Use_Ref;

@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+
+import React, { useCallback, useMemo, useState } from "react";
 import fib from "../utils/helper";
 
 const Use_Callback = () => {
@@ -11,17 +12,19 @@ const Use_Callback = () => {
   // It only RETURNS the function on behalf of dependencies
   // second prameter we pass the dependencies on which we need to perform the heavey function  operations
 
-  const fibonacci = useCallback(
-    (n) => {
-      if (n <= 1) return n;
-      return fib(n - 1) + fib(n - 2);
-    },
-    [text]
-  );
-  // const fibonacci=fib(text);
+  // ✅ Step 1: useCallback memoizes the FUNCTION
+  const fibonacci = useCallback((n) => {
+    return fib(n);
+  }, []);
+
+  // ✅ Step 2: useMemo memoizes the RESULT of calling the function
+  const fibonacciValue = useMemo(() => {
+    return fibonacci(text); // heavy call
+  }, [text, fibonacci]); // recompute only when text changes
+
   return (
     <div className="common">
-      <h1>Pratice of useCallback(cb,[dependencies]) hook..</h1>
+      <h1>Practice of useCallback</h1>
 
       <div
         className="container"
@@ -35,6 +38,7 @@ const Use_Callback = () => {
           Toggle Theme
         </button>
         <br />
+
         <input
           type="number"
           value={text}
@@ -43,7 +47,7 @@ const Use_Callback = () => {
 
         <div className="result">
           <h3>
-            The {text}th Fibonacci is: {fibonacci(text)}
+            The {text}th Fibonacci is: {fibonacciValue}
           </h3>
         </div>
       </div>
